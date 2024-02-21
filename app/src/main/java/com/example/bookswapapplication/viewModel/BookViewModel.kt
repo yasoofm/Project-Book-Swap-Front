@@ -5,10 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bookswapapplication.data.Book
 import com.example.bookswapapplication.data.User
 import com.example.bookswapapplication.data.response.TokenResponse
 import com.example.bookswapapplication.network.BookApiService
 import com.example.bookswapapplication.network.RetrofitHelper
+import com.example.bookswapapplication.utils.CategoryEnum
 import kotlinx.coroutines.launch
 
 class BookViewModel : ViewModel() {
@@ -42,6 +44,21 @@ class BookViewModel : ViewModel() {
             }
         }
     }
+
+
+    fun addbook(ISBN: Long, title: String, description: String,
+                author: String, condition: String, category: CategoryEnum){
+        viewModelScope.launch {
+            try {
+                val response = apiService.addBook(Book(id = null, ISBN = ISBN, title = title,
+                    author = author, description = description, condition = condition,
+                    category = category, image = null ))
+            } catch (e: Exception) {
+                println("Error $e")
+            }
+        }
+    }
+
 }
 
 
