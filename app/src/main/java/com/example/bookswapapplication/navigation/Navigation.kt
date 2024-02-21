@@ -23,7 +23,29 @@ fun Navigation(){
             SignInScreen(bookViewModel = bookViewModel, toSignUp = {navController.navigate(Routes.signupRoute)}, toHomeScreen = {navController.navigate(Routes.homeRoute)})
         }
         composable(Routes.homeRoute){
-            HomeScreen()
+            HomeScreen(bookViewModel = bookViewModel,
+                toAccount = {navController.navigate(Routes.accountRoute)},
+                toBookList = {navController.navigate(Routes.bookListRoute)},
+                toFavorites = {navController.navigate(Routes.favoritesRoute)},
+                toHistory = {navController.navigate(Routes.historyRoute)},
+                toNotifications = {navController.navigate(Routes.notificationRoute)},
+                toWishlist = {navController.navigate(Routes.wishlistRoute)}
+            )
+        }
+        composable(Routes.bookListRoute){
+
+        }
+        composable(Routes.notificationRoute){
+
+        }
+        composable(Routes.accountRoute){
+
+        }
+        composable(Routes.addBookRoute){
+
+        }
+        composable(Routes.addRequestRoute){
+
         }
     }
 }

@@ -16,41 +16,43 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.bookswapapplication.composables.MainPage.data.BottomNavigation
-
-val items = listOf(
-    BottomNavigation(
-        title = "Home",
-        icon = Icons.Rounded.Home
-    ),
-
-    BottomNavigation(
-        title = "Book List",
-        icon = Icons.Rounded.List
-    ),
-
-    BottomNavigation(
-        title = "Notifications",
-        icon = Icons.Rounded.Notifications
-    ),
-
-    BottomNavigation(
-        title = "Account",
-        icon = Icons.Rounded.AccountCircle
-    )
-)
-
-@Preview
 @Composable
-fun BottomNavigationBar() {
+fun BottomNavigationBar(toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit) {
+
+    val items = listOf(
+        BottomNavigation(
+            title = "Home",
+            icon = Icons.Rounded.Home,
+            destination = {}
+        ),
+
+        BottomNavigation(
+            title = "Book List",
+            icon = Icons.Rounded.List,
+            destination = toBookList
+        ),
+
+        BottomNavigation(
+            title = "Notifications",
+            icon = Icons.Rounded.Notifications,
+            destination = toNotifications
+        ),
+
+        BottomNavigation(
+            title = "Account",
+            icon = Icons.Rounded.AccountCircle,
+            destination = toAccount
+        )
+    )
+
     NavigationBar {
         Row(
             modifier = Modifier.background(MaterialTheme.colorScheme.inverseOnSurface)
         ) {
-
             items.forEachIndexed { index, item ->
                 NavigationBarItem(
                     selected = index == 0,
-                    onClick = {},
+                    onClick = {item.destination},
                     icon = {
                         Icon(
                             imageVector = item.icon,

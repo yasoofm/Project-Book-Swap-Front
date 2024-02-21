@@ -28,6 +28,7 @@ import com.example.bookswapapplication.composables.MainPage.TopSection
 import com.example.bookswapapplication.composables.MainPage.data.Fav
 import com.example.bookswapapplication.data.Book
 import com.example.bookswapapplication.utils.CategoryEnum
+import com.example.bookswapapplication.viewModel.BookViewModel
 
 val favList = listOf(
     Fav(
@@ -91,10 +92,10 @@ val bookrec = listOf(
     ),
 )
 @Composable
-fun HomeScreen() {
+fun HomeScreen(bookViewModel: BookViewModel, toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit, toFavorites: () -> Unit, toHistory: () -> Unit, toWishlist: () -> Unit) {
     Scaffold(
         bottomBar = {
-            BottomNavigationBar()
+            BottomNavigationBar(toBookList = toBookList, toNotifications = toNotifications, toAccount = toAccount)
         }
     ) { padding ->
         Column(
