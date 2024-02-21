@@ -30,25 +30,7 @@ import com.example.bookswapapplication.data.Book
 import com.example.bookswapapplication.utils.CategoryEnum
 import com.example.bookswapapplication.viewModel.BookViewModel
 
-val favList = listOf(
-    Fav(
-        icon = Icons.Rounded.Star,
-        name = "My\nFavourite",
-        background = Color.Black
-    ),
 
-    Fav(
-        icon = Icons.Rounded.Favorite,
-        name = "My\nWish list",
-        background = Color.Red
-    ),
-
-    Fav(
-        icon = Icons.Rounded.DateRange,
-        name = "My\nhistory",
-        background = Color.Black
-    ),
-)
 val bookrec = listOf(
     Book(
         title = "Harry Potter1",
@@ -93,6 +75,28 @@ val bookrec = listOf(
 )
 @Composable
 fun HomeScreen(bookViewModel: BookViewModel, toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit, toFavorites: () -> Unit, toHistory: () -> Unit, toWishlist: () -> Unit) {
+    val favList = listOf(
+        Fav(
+            icon = Icons.Rounded.Star,
+            name = "My\nFavourite",
+            background = Color.Black,
+            destination = toFavorites
+        ),
+
+        Fav(
+            icon = Icons.Rounded.Favorite,
+            name = "My\nWish list",
+            background = Color.Red,
+            destination = toWishlist
+        ),
+
+        Fav(
+            icon = Icons.Rounded.DateRange,
+            name = "My\nhistory",
+            background = Color.Black,
+            destination = toHistory
+        ),
+    )
     Scaffold(
         bottomBar = {
             BottomNavigationBar(toBookList = toBookList, toNotifications = toNotifications, toAccount = toAccount)

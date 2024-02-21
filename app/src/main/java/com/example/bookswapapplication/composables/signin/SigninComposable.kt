@@ -87,9 +87,7 @@ fun SignInForm(bookViewModel: BookViewModel, toHomeScreen: () -> Unit
 
         Button(
             onClick = {
-                bookViewModel.signIn(email, password)
-                if (bookViewModel.token != null)
-                    toHomeScreen()
+                bookViewModel.signIn(email, password, toHomeScreen)
             },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Black)

@@ -1,5 +1,7 @@
 package com.example.bookswapapplication.composables.profilePage
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,8 +23,6 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -41,17 +41,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.example.bookswapapplication.R
+import com.example.bookswapapplication.data.User
 import com.example.bookswapapplication.ui.theme.BookSwapApplicationTheme
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Date
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun ProfilePage() {
+fun ProfilePage(user: User) {
+    var selectedGender by remember { mutableStateOf("Male") }
     val genderOptions = listOf("Male", "Female")
-    var name by remember { mutableStateOf("faten") }
-    var email by remember { mutableStateOf("faten@gmail.com") }
-    var phoneNumber by remember { mutableStateOf("+965 45863579") }
-    var selectedGender by remember { mutableStateOf("Female") }
-
     Column(
         modifier = Modifier
             .background(Color.White)
@@ -78,7 +79,7 @@ fun ProfilePage() {
 
 
         Text(
-            text = name,
+            text = user.name?: "No Name",
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
@@ -86,29 +87,22 @@ fun ProfilePage() {
         Spacer(modifier = Modifier.height(8.dp))
 
 
-        ProfileField(Icons.Default.Email, email)
+        ProfileField(Icons.Default.Email, user.email)
 
         Spacer(modifier = Modifier.height(8.dp))
 
 
-        ProfileField(Icons.Default.Phone, phoneNumber)
+        ProfileField(Icons.Default.Phone, user.phoneNumber?: "No Number")
         Spacer(modifier = Modifier.height(8.dp))
 
-        ProfileField(Icons.Default.DateRange, "JUNE 6, 1998")
+        ProfileField(Icons.Default.DateRange, LocalDate.now().format(DateTimeFormatter.ofPattern("d-MM-y")))
 
         Spacer(modifier = Modifier.height(8.dp))
-
-
-//        ProfileField(Icons.Default.Face, "Female")
-
 
         Spacer(modifier = Modifier.height(8.dp))
         GenderDropdown(genderOptions, selectedGender) { gender ->
             selectedGender = gender
         }
-
-        Spacer(modifier = Modifier.height(8.dp))
-        SettingsButton()
     }
 }
 @Composable
@@ -190,19 +184,3 @@ fun ProfileField(icon: ImageVector, value: String) {
     }
 }
 
-@Composable
-fun SettingsButton() {
-    ProfileField(
-        icon = Icons.Default.Settings,
-        value = "Settings",
-
-        )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ProfilePagePreview() {
-    BookSwapApplicationTheme {
-        ProfilePage()
-    }
-}

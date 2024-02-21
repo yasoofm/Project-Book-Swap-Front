@@ -27,7 +27,7 @@ class BookViewModel : ViewModel() {
         }
     }
 
-    fun signIn(username: String, password: String){
+    fun signIn(username: String, password: String, toHomeScreen: () -> Unit){
         viewModelScope.launch {
             try {
                 val response = apiService.signIn(User(username, password,null, null, null, null))
@@ -35,6 +35,10 @@ class BookViewModel : ViewModel() {
                 println("TOKEN SIGNIN ${token?.token}")
             } catch (e: Exception) {
                 println("Error $e")
+            } finally {
+                if (token != null){
+                    toHomeScreen()
+                }
             }
         }
     }
