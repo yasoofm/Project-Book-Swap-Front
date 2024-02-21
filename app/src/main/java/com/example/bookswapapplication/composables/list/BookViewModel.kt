@@ -1,4 +1,4 @@
-package com.example.bookswapapplication.ui.theme.list
+package com.example.bookswapapplication.composables.list
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

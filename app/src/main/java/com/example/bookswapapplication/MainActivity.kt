@@ -29,13 +29,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.bookswapapplication.ui.theme.BookSwapApplicationTheme
-import com.example.bookswapapplication.ui.theme.MainPage.BookSection
-import com.example.bookswapapplication.ui.theme.MainPage.BottomNavigationBar
-import com.example.bookswapapplication.ui.theme.MainPage.FavSection
-import com.example.bookswapapplication.ui.theme.MainPage.MostSwipedSection
-import com.example.bookswapapplication.ui.theme.MainPage.TopSection
+import com.example.bookswapapplication.composables.MainPage.BookSection
+import com.example.bookswapapplication.composables.MainPage.BottomNavigationBar
+import com.example.bookswapapplication.composables.MainPage.FavSection
+import com.example.bookswapapplication.composables.MainPage.MostSwipedSection
+import com.example.bookswapapplication.composables.MainPage.TopSection
 
-import com.example.bookswapapplication.ui.theme.list.BooksApp
+import com.example.bookswapapplication.composables.list.BooksApp
 
 
 
@@ -94,9 +94,3 @@ class MainActivity : ComponentActivity() {
 
 
 }}
-
-                }
-            }
-        }
-    }
-}

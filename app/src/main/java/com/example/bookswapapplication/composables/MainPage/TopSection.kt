@@ -1,4 +1,4 @@
-package com.example.bookswapapplication.ui.theme.MainPage
+package com.example.bookswapapplication.composables.MainPage
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

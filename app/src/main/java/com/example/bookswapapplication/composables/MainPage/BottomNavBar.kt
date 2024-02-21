@@ -1,4 +1,4 @@
-package com.example.bookswapapplication.ui.theme.MainPage
+package com.example.bookswapapplication.composables.MainPage
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -15,7 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.bookswapapplication.ui.theme.MainPage.data.BottomNavigation
+import com.example.bookswapapplication.composables.MainPage.data.BottomNavigation
 
 val items = listOf(
     BottomNavigation(
