@@ -6,6 +6,4 @@ import androidx.compose.ui.graphics.vector.ImageVector
 data class Fav(
     val icon: ImageVector,
     val name: String,
-    val background: Color,
-    val des:String
-)
+    val background: Color)
