@@ -8,11 +8,9 @@ class Constants {
         const val addBookEndpoint = "add-book"
         const val getBookEndpoint = "get-books"
         const val getSentRequests = "get-sent-requests"
-        const val getRecievedRequests = "get-received-requests"
-        const val swap = "swap"
+        const val getReceivedRequests = "get-received-requests"
+        const val swapBooks = "swap"
         const val updateRequestStatus = "update-request-status"
         const val filterByCategory = "filter-by-category"
-
-
     }
 }
