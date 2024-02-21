@@ -32,7 +32,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookswapapplication.ui.theme.BookSwapApplicationTheme
 import com.example.bookswapapplication.viewModel.BookViewModel
 
-
 @Composable
 fun SignInScreen(
     bookViewModel: BookViewModel,
@@ -46,14 +45,9 @@ fun SignInScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         Text(text = "Book swap Application", style = MaterialTheme.typography.bodyMedium, color = Color(0xFF9AD14D) )
-
-
         Spacer(modifier = Modifier.height(16.dp))
         SignInForm(bookViewModel, toHomeScreen)
-
-
         Spacer(modifier = Modifier.height(16.dp))
         TextButton(
             onClick = toSignUp
@@ -94,7 +88,8 @@ fun SignInForm(bookViewModel: BookViewModel, toHomeScreen: () -> Unit
         Button(
             onClick = {
                 bookViewModel.signIn(email, password)
-                toHomeScreen()
+                if (bookViewModel.token != null)
+                    toHomeScreen()
             },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
