@@ -48,7 +48,7 @@ fun FavItem(
 Box(modifier = Modifier
     .clip(RoundedCornerShape(25.dp))
     .background(MaterialTheme.colorScheme.secondaryContainer)
-    .clickable { }
+    .clickable { fav.destination() }
     .size(100.dp)) {
     Column (modifier = Modifier.padding(6.dp)){
         Box(
