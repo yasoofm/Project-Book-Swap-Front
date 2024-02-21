@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
-@Preview
 @Composable
 fun TopSection() {
     Row(
@@ -46,11 +45,9 @@ fun TopSection() {
                 fontStyle = FontStyle.Italic,
                 color = Color.White,
 
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-
-        }
-
+                )
         }
 
     }
+
+}
