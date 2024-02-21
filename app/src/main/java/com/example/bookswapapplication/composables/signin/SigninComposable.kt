@@ -45,7 +45,13 @@ fun SignInScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Book swap Application", style = MaterialTheme.typography.bodyMedium, color = Color(0xFF9AD14D) )
+
+        Text(text = "Book swap Application", style = MaterialTheme.typography.bodyMedium, color = Color(
+            0xFF4D88D1
+        )
+        )
+
+
         Spacer(modifier = Modifier.height(16.dp))
         SignInForm(bookViewModel, toHomeScreen)
         Spacer(modifier = Modifier.height(16.dp))

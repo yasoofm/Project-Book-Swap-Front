@@ -19,7 +19,7 @@ interface BookApiService {
     suspend fun signup(@Body user: User): Response<String>
 
     @POST(Constants.addBookEndpoint)
-    suspend fun addBook(@Body user: User): Response<String>
+    suspend fun addBook(@Body book: Book): Response<String>
 
     @GET(Constants.getBookEndpoint)
     suspend fun getBook(@Body user: User): Response<Book>
