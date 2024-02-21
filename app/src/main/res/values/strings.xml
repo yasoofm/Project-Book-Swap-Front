@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">Book Swap Application</string>
-</resources>
+
+        <string name="book1">Harry potter 1</string>
+        <string name="description1">The Jetpack Hero</string>
+        <string name="book2">Harry potter 2</string>
+        <string name="description2">Understands the absolute truth</string>
+        <string name="book3">Harry potter 3</string>
+        <string name="description3">Mimics the light and night to blend in</string>
+        <string name="book4">Harry potter 4</string>
+        <string name="description4">Harnesses the power of canary to develop bravely</string>
+        <string name="book5"> Harry potter 5</string>
+        <string name="description5">Effortlessly glides in to save the day</string>
+        <string name="book6">Harry potter 6</string>
+        <string name="description6">Ability to shift to any form and energize</string>
+    <string name="detail_fragment_label">Book Info</string>
+    <string name="list_fragment_label">Book List</string>
+    <string name="back_button">Back</string>
+    <string name="available_caption">Available</string>
+
+    <string name="harrypotter1">Harry Potter1</string>
+    <string name="harrypotter2">Harry Potter2</string>
+    <string name="harrypotter3">Harry Potter3</string>
+    <string name="harrypotter4">Harry Potter4</string>
+    <string name="harrypotter5">Harry Potter5</string>
+    <string name="harrypotter6">Harry Potter6</string>
+
+    <string name="writer">J.K.Rowling</string>
+    <string name="Details">a story about a boy with magic</string>
+
+
+    </resources>
