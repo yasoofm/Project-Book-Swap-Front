@@ -2,7 +2,6 @@ package com.example.bookswapapplication
 
 
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,30 +11,24 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.bookswapapplication.ui.theme.BookSwapApplicationTheme
 import com.example.bookswapapplication.composables.MainPage.BookSection
 import com.example.bookswapapplication.composables.MainPage.BottomNavigationBar
 import com.example.bookswapapplication.composables.MainPage.FavSection
 import com.example.bookswapapplication.composables.MainPage.MostSwipedSection
 import com.example.bookswapapplication.composables.MainPage.TopSection
+import com.example.bookswapapplication.composables.Request.RequestPage
 
-import com.example.bookswapapplication.composables.list.BooksApp
 
 
 
@@ -52,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                   HomeScreen()
+                   RequestPage()
 
                 }
             }
