@@ -1,4 +1,4 @@
-package com.example.bookswapapplication.ui.theme.MainPage.data
+package com.example.bookswapapplication.composables.MainPage.data
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector

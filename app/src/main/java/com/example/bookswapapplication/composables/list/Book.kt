@@ -1,4 +1,4 @@
-package com.example.bookswapapplication.ui.theme.list
+package com.example.bookswapapplication.composables.list
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
