@@ -52,7 +52,7 @@ fun BottomNavigationBar(toBookList: () -> Unit, toNotifications: () -> Unit, toA
             items.forEachIndexed { index, item ->
                 NavigationBarItem(
                     selected = index == 0,
-                    onClick = {item.destination},
+                    onClick = {item.destination()},
                     icon = {
                         Icon(
                             imageVector = item.icon,

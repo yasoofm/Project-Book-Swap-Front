@@ -1,16 +1,23 @@
 package com.example.bookswapapplication.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.bookswapapplication.composables.HomeScreen
+import com.example.bookswapapplication.composables.NotificationPage
+import com.example.bookswapapplication.composables.Request.RequestPage
+import com.example.bookswapapplication.composables.profilePage.ProfilePage
 import com.example.bookswapapplication.composables.signin.SignInScreen
 import com.example.bookswapapplication.composables.signup.SignUpScreen
+import com.example.bookswapapplication.data.User
 import com.example.bookswapapplication.utils.Routes
 import com.example.bookswapapplication.viewModel.BookViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Navigation(){
     val bookViewModel: BookViewModel = viewModel();
@@ -36,15 +43,24 @@ fun Navigation(){
 
         }
         composable(Routes.notificationRoute){
-
+            NotificationPage()
         }
         composable(Routes.accountRoute){
-
+            ProfilePage(User("mail", "pass", null, "phone", "name", null))
         }
         composable(Routes.addBookRoute){
 
         }
         composable(Routes.addRequestRoute){
+            RequestPage()
+        }
+        composable(Routes.favoritesRoute){
+
+        }
+        composable(Routes.historyRoute){
+
+        }
+        composable(Routes.wishlistRoute){
 
         }
     }
