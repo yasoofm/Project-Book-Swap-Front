@@ -12,5 +12,5 @@ interface BookApiService {
     suspend fun signIn(@Body user: User) : Response<TokenResponse>
 
     @POST(Constants.signupEndpoint)
-    suspend fun signup(@Body user: User): Response<TokenResponse>
+    suspend fun signup(@Body user: User): Response<String>
 }

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ListItemDefaults
@@ -14,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,9 +24,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookswapapplication.ui.theme.BookSwapApplicationTheme
 import com.example.bookswapapplication.viewModel.BookViewModel
 
@@ -32,8 +36,8 @@ import com.example.bookswapapplication.viewModel.BookViewModel
 @Composable
 fun SignInScreen(
     bookViewModel: BookViewModel,
-//    navigateToHome: () -> Unit,
-//    onSignUpClick: () -> Unit
+    toSignUp: () -> Unit,
+    toHomeScreen: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -47,37 +51,35 @@ fun SignInScreen(
 
 
         Spacer(modifier = Modifier.height(16.dp))
-        SignInForm(bookViewModel, //navigateToHome
-        )
+        SignInForm(bookViewModel, toHomeScreen)
 
 
         Spacer(modifier = Modifier.height(16.dp))
-//        TextButton(
-//            onClick = onSignUpClick
-//        ) {
+        TextButton(
+            onClick = toSignUp
+        ) {
             Text(text = "Don't have an account? Sign Up")
-//        }
+      }
     }
 }
 
 @Composable
-fun SignInForm(bookViewModel: BookViewModel, //onSigninClick: () -> Unit
+fun SignInForm(bookViewModel: BookViewModel, toHomeScreen: () -> Unit
 ) {
-    var username by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
     Column {
         OutlinedTextField(
-            colors = OutlinedTextFieldDefaults.colors(Color.White),
-            value = username,
-            onValueChange = { username = it },
-            label = { Text("Username") },
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") },
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Email),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
         )
         OutlinedTextField(
-            colors = OutlinedTextFieldDefaults.colors(Color.White),
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
@@ -89,17 +91,13 @@ fun SignInForm(bookViewModel: BookViewModel, //onSigninClick: () -> Unit
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        if (bookViewModel.token?.token != null) {
-
-        }
-           // onSigninClick()
-
         Button(
             onClick = {
-                bookViewModel.signIn(username, password)
+                bookViewModel.signIn(email, password)
+                toHomeScreen()
             },
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(ListItemDefaults.contentColor)
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
         ) {
             Text(text = "Sign In")
         }
@@ -112,10 +110,11 @@ fun SignInForm(bookViewModel: BookViewModel, //onSigninClick: () -> Unit
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BookSwapApplicationTheme {
-        //SignInScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    BookSwapApplicationTheme {
+//        val bookViewModel: BookViewModel = viewModel()
+//        SignInForm(bookViewModel = bookViewModel)
+//    }
+//}

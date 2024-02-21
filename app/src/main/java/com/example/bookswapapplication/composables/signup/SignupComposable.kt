@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -23,15 +26,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.bookswapapplication.data.User
 import com.example.bookswapapplication.viewModel.BookViewModel
 
 @Composable
 fun SignUpScreen(
-    bookViewModel: BookViewModel, onSignInClick: () -> Unit
-
+    bookViewModel: BookViewModel, toHomeScreen: () -> Unit, toSignIn: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -42,15 +46,14 @@ fun SignUpScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
-        Text(text = "Bank App", style = MaterialTheme.typography.headlineMedium,color =  Color(0xFF9AD14D))
-
+        Text(text = "Bank App", style = MaterialTheme.typography.headlineMedium, color =  Color(0xFF9AD14D))
 
         Spacer(modifier = Modifier.height(16.dp))
         // double check
-        SignUpForm(BookViewModel(),onSignInClick)
+        SignUpForm(BookViewModel(), toSignIn)
 
         Spacer(modifier = Modifier.height(16.dp))
-        TextButton(onClick = onSignInClick) {
+        TextButton(onClick = toSignIn) {
             Text(text = "Already have an account? Sign In")
         }
     }
@@ -58,51 +61,43 @@ fun SignUpScreen(
 
 
 @Composable
-fun SignUpForm( bookViewModel: BookViewModel ,onSigninClick:() -> Unit
-
-
-) {
-    var username by remember { mutableStateOf("") }
+fun SignUpForm( bookViewModel: BookViewModel , toSignIn: () -> Unit) {
+    var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
 
     Column {
         OutlinedTextField(
-            colors = OutlinedTextFieldDefaults.colors(Color.White),
-            value = username,
-            onValueChange = { username = it },
-            label = { Text("Username") },
+            value = name,
+            onValueChange = { name = it },
+            label = { Text("Name") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
         )
         OutlinedTextField(
-            colors = OutlinedTextFieldDefaults.colors(Color.White),
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-            visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        )
-        OutlinedTextField(
-            colors = OutlinedTextFieldDefaults.colors(Color.White),
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
-            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Email),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
         )
         OutlinedTextField(
-            colors = OutlinedTextFieldDefaults.colors(Color.White),
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+        OutlinedTextField(
             value = phoneNumber,
             onValueChange = { phoneNumber = it },
             label = { Text("Phone Number") },
-            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
@@ -112,11 +107,11 @@ fun SignUpForm( bookViewModel: BookViewModel ,onSigninClick:() -> Unit
 
         Button(
             onClick = {
-
-                bookViewModel.signup(username, password,onSigninClick)
-                      },
-            modifier = Modifier.fillMaxWidth(),colors = ButtonDefaults.buttonColors(ListItemDefaults.contentColor)
-        ) {
+                bookViewModel.signup(email, password, name, phoneNumber)
+                toSignIn()
+            },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
+            modifier = Modifier.fillMaxWidth()) {
             Text(text = "Sign Up")
         }
     }
