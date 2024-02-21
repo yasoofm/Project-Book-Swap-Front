@@ -36,7 +36,7 @@ import com.example.bookswapapplication.composables.MainPage.MostSwipedSection
 import com.example.bookswapapplication.composables.MainPage.TopSection
 
 import com.example.bookswapapplication.composables.list.BooksApp
-
+import com.example.bookswapapplication.composables.profilePage.ProfilePage
 
 
 class MainActivity : ComponentActivity() {
@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                   HomeScreen()
+                    ProfilePage()
 
                 }
             }
