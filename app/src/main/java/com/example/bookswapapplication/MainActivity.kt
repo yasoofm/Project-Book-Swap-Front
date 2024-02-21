@@ -53,13 +53,6 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                    HomeScreen()
-                    //BooksScreen()
-
-//                    val windowSize = calculateWindowSizeClass(this)
-//                    BooksApp(
-//                        windowSize = windowSize.widthSizeClass,
-//                        onBackPressed = { finish() }
-//                    )
 
                 }
             }
@@ -101,3 +94,9 @@ class MainActivity : ComponentActivity() {
 
 
 }}
+
+                }
+            }
+        }
+    }
+}
