@@ -8,6 +8,7 @@ import com.example.bookswapapplication.utils.Constants
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
 
@@ -19,7 +20,10 @@ interface BookApiService {
     suspend fun signup(@Body user: User): Response<String>
 
     @POST(Constants.addBookEndpoint)
-    suspend fun addBook(@Body book: Book): Response<String>
+    suspend fun addBook(
+        @Header("Authorization") token: String?,
+        @Body book: Book
+    ): Response<String>
 
     @GET(Constants.getBookEndpoint)
     suspend fun getBook(@Body user: User): Response<Book>

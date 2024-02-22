@@ -50,7 +50,7 @@ class BookViewModel : ViewModel() {
                 author: String, condition: String, category: CategoryEnum){
         viewModelScope.launch {
             try {
-                val response = apiService.addBook(Book(id = null, ISBN = ISBN, title = title,
+                val response = apiService.addBook(token = token?.token, Book(id = null, ISBN = ISBN, title = title,
                     author = author, description = description, condition = condition,
                     category = category, image = null ))
             } catch (e: Exception) {

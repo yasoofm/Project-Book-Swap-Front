@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.DateRange
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.Star
@@ -74,7 +75,7 @@ val bookrec = listOf(
     ),
 )
 @Composable
-fun HomeScreen(bookViewModel: BookViewModel, toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit, toFavorites: () -> Unit, toHistory: () -> Unit, toWishlist: () -> Unit) {
+fun HomeScreen(bookViewModel: BookViewModel, toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit, toFavorites: () -> Unit, toHistory: () -> Unit, toWishlist: () -> Unit, toAddBook: () -> Unit) {
     val favList = listOf(
         Fav(
             icon = Icons.Rounded.Star,
@@ -96,6 +97,10 @@ fun HomeScreen(bookViewModel: BookViewModel, toBookList: () -> Unit, toNotificat
             background = Color.Black,
             destination = toHistory
         ),
+        Fav(icon = Icons.Rounded.Add,
+            name = "Add\nbook",
+            background = Color.Black,
+            destination = toAddBook)
     )
     Scaffold(
         bottomBar = {
