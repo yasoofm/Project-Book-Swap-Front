@@ -1,4 +1,4 @@
-package com.example.bookswapapplication.composables
+package com.example.bookswapapplication.composables.addBooks
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.bookswapapplication.viewModel.BookViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -47,26 +45,17 @@ fun AddBook(modifier: Modifier = Modifier, viewModel: BookViewModel = viewModel(
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
-            value = title,
-            onValueChange = { title = it },
-            label = { Text("Book title") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        )
-        OutlinedTextField(
-            value = author,
-            onValueChange = { author = it },
-            label = { Text("Book author") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-        )
-        OutlinedTextField(
             value = ISBN,
             onValueChange = { ISBN = it },
-            label = { Text("ISBN") },
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
+            label = { Text("Book name") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+        OutlinedTextField(
+            value = title,
+            onValueChange = { title = it },
+            label = { Text("Book author") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
@@ -74,6 +63,14 @@ fun AddBook(modifier: Modifier = Modifier, viewModel: BookViewModel = viewModel(
         OutlinedTextField(
             value = description,
             onValueChange = { description = it },
+            label = { Text("ISBN") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+        OutlinedTextField(
+            value = author,
+            onValueChange = { author = it },
             label = { Text("Description") },
             modifier = Modifier
                 .fillMaxWidth()
@@ -90,7 +87,7 @@ fun AddBook(modifier: Modifier = Modifier, viewModel: BookViewModel = viewModel(
         OutlinedTextField(
             value = category,
             onValueChange = { category = it },
-            label = { Text("Category") },
+            label = { Text("Condition") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
@@ -98,7 +95,7 @@ fun AddBook(modifier: Modifier = Modifier, viewModel: BookViewModel = viewModel(
 
         Button(
             onClick = {
-                viewModel.addbook(ISBN.toLong(), title, description ,author, condition, category = CategoryEnum.valueOf(category.uppercase()))
+                viewModel.addbook(ISBN.toLong(), title, description ,author, condition, category = CategoryEnum.valueOf(category))
                 toHomeScreen()
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color.Black),
@@ -106,6 +103,7 @@ fun AddBook(modifier: Modifier = Modifier, viewModel: BookViewModel = viewModel(
         )
         {
             Text(text = "Add")
+
         }
     }
 }
