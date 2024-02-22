@@ -17,13 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.bookswapapplication.composables.MainPage.data.BottomNavigation
 @Composable
-fun BottomNavigationBar(toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit) {
+fun BottomNavigationBar(toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit, toHomeScreen: () -> Unit) {
 
     val items = listOf(
         BottomNavigation(
             title = "Home",
             icon = Icons.Rounded.Home,
-            destination = {}
+            destination = {toHomeScreen}
         ),
 
         BottomNavigation(
@@ -51,7 +51,7 @@ fun BottomNavigationBar(toBookList: () -> Unit, toNotifications: () -> Unit, toA
         ) {
             items.forEachIndexed { index, item ->
                 NavigationBarItem(
-                    selected = index == 0,
+                    selected = false,
                     onClick = {item.destination()},
                     icon = {
                         Icon(

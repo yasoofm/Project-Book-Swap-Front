@@ -26,7 +26,7 @@ interface BookApiService {
     ): Response<String>
 
     @GET(Constants.getBookEndpoint)
-    suspend fun getBook(@Body user: User): Response<Book>
+    suspend fun getBooks(@Body user: User): Response<Book>
 
     @GET(Constants.getSentRequests)
     suspend fun getSentRequests(@Body user: User): Response<Request>
