@@ -10,7 +10,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.bookswapapplication.composables.HomeScreen
 import com.example.bookswapapplication.composables.NotificationPage
-import com.example.bookswapapplication.composables.Request.RequestPage
+import com.example.bookswapapplication.composables.Request.ReceivedRequestsList
+import com.example.bookswapapplication.composables.Request.SentRequestsList
 import com.example.bookswapapplication.composables.profilePage.ProfilePage
 import com.example.bookswapapplication.composables.signin.SignInScreen
 import com.example.bookswapapplication.composables.signup.SignUpScreen
@@ -48,7 +49,8 @@ fun Navigation(){
             })
         }
         composable(Routes.notificationRoute){
-            NotificationPage()
+            bookViewModel.receivedRequests()
+            ReceivedRequestsList(bookViewModel = bookViewModel)
         }
         composable(Routes.accountRoute){
             ProfilePage(User("mail", "pass", null, "phone", "name", null))
@@ -63,7 +65,8 @@ fun Navigation(){
 
         }
         composable(Routes.historyRoute){
-
+            bookViewModel.sentRequests()
+            SentRequestsList(bookViewModel = bookViewModel)
         }
         composable(Routes.wishlistRoute){
 

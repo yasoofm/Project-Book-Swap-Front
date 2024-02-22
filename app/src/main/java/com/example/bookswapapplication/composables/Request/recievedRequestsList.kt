@@ -30,7 +30,7 @@ import com.example.bookswapapplication.viewModel.BookViewModel
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReceivedRequestsList(requests: List<Request>, viewModel: BookViewModel) {
+fun ReceivedRequestsList(bookViewModel: BookViewModel) {
 
     Scaffold(
         topBar = {
@@ -40,14 +40,13 @@ fun ReceivedRequestsList(requests: List<Request>, viewModel: BookViewModel) {
         }
     ) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(it),
             contentPadding = PaddingValues(16.dp)
         ) {
-            items(requests) { request ->
+            items(bookViewModel.receivedList?: listOf()) { request ->
                 ReceivedRequestCard(
                     request = request,
-                    onAccept = {},
-                    onDeny = { }
+                    bookViewModel = bookViewModel
                 )
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -58,8 +57,7 @@ fun ReceivedRequestsList(requests: List<Request>, viewModel: BookViewModel) {
 @Composable
 fun ReceivedRequestCard(
     request: Request,
-    onAccept: () -> Unit,
-    onDeny: () -> Unit
+    bookViewModel: BookViewModel
 ) {
     Card(
         modifier = Modifier
@@ -70,11 +68,11 @@ fun ReceivedRequestCard(
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = "Receiver: ${request.receiver}",
+                text = "Sender: ${request.sender.name}",
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Book: ${request.book}",
+                text = "Book: ${request.book.title}",
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -88,7 +86,13 @@ fun ReceivedRequestCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Button(
-                    onClick = onAccept,
+                    onClick = {
+                        println(request.id)
+                        if (request.id != null) {
+                            bookViewModel.updateRequestStatus(request.id, Status.ACCEPTED.name)
+                            bookViewModel.receivedRequests()
+                        }
+                    },
                     modifier = Modifier
                         .weight(1f)
                         .padding(end = 8.dp)
@@ -97,7 +101,12 @@ fun ReceivedRequestCard(
                 }
 
                 Button(
-                    onClick = onDeny,
+                    onClick = {
+                        if (request.id != null) {
+                            bookViewModel.updateRequestStatus(request.id, Status.DENIED.name)
+                            bookViewModel.receivedRequests()
+                        }
+                    },
                     modifier = Modifier
                         .weight(1f)
                         .padding(start = 8.dp)
