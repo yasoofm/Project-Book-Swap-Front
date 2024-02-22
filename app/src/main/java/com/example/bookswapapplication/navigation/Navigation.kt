@@ -9,8 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.bookswapapplication.composables.AddBook
+import com.example.bookswapapplication.composables.BooksListPage
 import com.example.bookswapapplication.composables.HomeScreen
-import com.example.bookswapapplication.composables.NotificationPage
 import com.example.bookswapapplication.composables.Request.ReceivedRequestsList
 import com.example.bookswapapplication.composables.Request.SentRequestsList
 import com.example.bookswapapplication.composables.profilePage.ProfilePage
@@ -45,7 +45,13 @@ fun Navigation(){
             )
         }
         composable(Routes.bookListRoute){
+            BooksListPage(
+                bookViewModel = bookViewModel,
+                toBookList = { navController.navigate(Routes.bookListRoute) },
+                toNotifications = { navController.navigate(Routes.historyRoute) },
+                toAccount = { navController.navigate(Routes.homeRoute) }) {
 
+            }
         }
         composable(Routes.notificationRoute){
             bookViewModel.receivedRequests()
@@ -62,8 +68,6 @@ fun Navigation(){
         }
         composable(Routes.addBookRoute){
             AddBook(modifier = Modifier, viewModel = bookViewModel, toHomeScreen = {navController.navigate(Routes.homeRoute)})
-        }
-        composable(Routes.addRequestRoute){
         }
         composable(Routes.favoritesRoute){
 

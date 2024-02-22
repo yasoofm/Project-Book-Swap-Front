@@ -3,6 +3,7 @@ package com.example.bookswapapplication.network
 import com.example.bookswapapplication.data.Book
 import com.example.bookswapapplication.data.Request
 import com.example.bookswapapplication.data.User
+import com.example.bookswapapplication.data.request.SwapRequest
 import com.example.bookswapapplication.data.request.UpdateStatusRequest
 import com.example.bookswapapplication.data.response.TokenResponse
 import com.example.bookswapapplication.utils.Constants
@@ -29,7 +30,7 @@ interface BookApiService {
     ): Response<String>
 
     @GET(Constants.getBookEndpoint)
-    suspend fun getBooks(@Body user: User): Response<Book>
+    suspend fun getBooks(@Header("Authorization") token: String?): Response<List<Book>>
 
     @GET(Constants.getSentRequests)
     suspend fun getSentRequests(@Header("Authorization") token: String?): Response<List<Request>>
@@ -38,7 +39,7 @@ interface BookApiService {
     suspend fun getReceivedRequests(@Header("Authorization") token: String?): Response<List<Request>>
 
     @POST(Constants.swapBooks)
-    suspend fun swapBooks(@Body user: User): Response<String>
+    suspend fun swapBooks(@Header("Authorization") token: String?, @Body swapRequest: SwapRequest): Response<String>
 
     @PATCH(Constants.updateRequestStatus)
     suspend fun updateRequestStatus(@Header("Authorization") token: String?, @Query("requestID") requestId: Long, @Body updateStatusRequest: UpdateStatusRequest): Response<String>
