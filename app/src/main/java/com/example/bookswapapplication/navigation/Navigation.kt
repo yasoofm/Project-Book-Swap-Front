@@ -3,10 +3,12 @@ package com.example.bookswapapplication.navigation
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.bookswapapplication.composables.AddBook
 import com.example.bookswapapplication.composables.HomeScreen
 import com.example.bookswapapplication.composables.NotificationPage
 import com.example.bookswapapplication.composables.Request.RequestPage
@@ -36,7 +38,8 @@ fun Navigation(){
                 toFavorites = {navController.navigate(Routes.favoritesRoute)},
                 toHistory = {navController.navigate(Routes.historyRoute)},
                 toNotifications = {navController.navigate(Routes.notificationRoute)},
-                toWishlist = {navController.navigate(Routes.wishlistRoute)}
+                toWishlist = {navController.navigate(Routes.wishlistRoute)},
+                toAddBook = {navController.navigate(Routes.addBookRoute)}
             )
         }
         composable(Routes.bookListRoute){
@@ -49,7 +52,7 @@ fun Navigation(){
             ProfilePage(User("mail", "pass", null, "phone", "name", null))
         }
         composable(Routes.addBookRoute){
-
+            AddBook(modifier = Modifier, viewModel = bookViewModel, toHomeScreen = {navController.navigate(Routes.homeRoute)})
         }
         composable(Routes.addRequestRoute){
             RequestPage()
