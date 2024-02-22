@@ -75,7 +75,7 @@ val bookrec = listOf(
     ),
 )
 @Composable
-fun HomeScreen(bookViewModel: BookViewModel, toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit, toFavorites: () -> Unit, toHistory: () -> Unit, toWishlist: () -> Unit, toAddBook: () -> Unit) {
+fun HomeScreen(bookViewModel: BookViewModel, toBookList: () -> Unit, toNotifications: () -> Unit, toAccount: () -> Unit, toFavorites: () -> Unit, toHistory: () -> Unit, toWishlist: () -> Unit, toAddBook: () -> Unit, toHomeScreen: () -> Unit) {
     val favList = listOf(
         Fav(
             icon = Icons.Rounded.Star,
@@ -104,7 +104,7 @@ fun HomeScreen(bookViewModel: BookViewModel, toBookList: () -> Unit, toNotificat
     )
     Scaffold(
         bottomBar = {
-            BottomNavigationBar(toBookList = toBookList, toNotifications = toNotifications, toAccount = toAccount)
+            BottomNavigationBar(toBookList = toBookList, toNotifications = toNotifications, toAccount = toAccount, toHomeScreen = toHomeScreen)
         }
     ) { padding ->
         Column(

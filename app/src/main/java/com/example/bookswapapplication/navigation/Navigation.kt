@@ -39,7 +39,8 @@ fun Navigation(){
                 toHistory = {navController.navigate(Routes.historyRoute)},
                 toNotifications = {navController.navigate(Routes.notificationRoute)},
                 toWishlist = {navController.navigate(Routes.wishlistRoute)},
-                toAddBook = {navController.navigate(Routes.addBookRoute)}
+                toAddBook = {navController.navigate(Routes.addBookRoute)},
+                toHomeScreen = {navController.navigate(Routes.homeRoute)}
             )
         }
         composable(Routes.bookListRoute){
@@ -49,7 +50,13 @@ fun Navigation(){
             NotificationPage()
         }
         composable(Routes.accountRoute){
-            ProfilePage(User("mail", "pass", null, "phone", "name", null))
+            ProfilePage(
+                user = User("mail", "pass", null, "phone", "name", null),
+                toHomeScreen = {navController.navigate(Routes.homeRoute)},
+                toAccount = {navController.navigate(Routes.accountRoute)},
+                toNotifications = {navController.navigate(Routes.notificationRoute)},
+                toBookList = {navController.navigate(Routes.bookListRoute)}
+            )
         }
         composable(Routes.addBookRoute){
             AddBook(modifier = Modifier, viewModel = bookViewModel, toHomeScreen = {navController.navigate(Routes.homeRoute)})
