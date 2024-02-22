@@ -1,9 +1,9 @@
 package com.example.bookswapapplication.navigation
 
+import BookListScreen
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,9 +23,10 @@ import com.example.bookswapapplication.viewModel.BookViewModel
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Navigation(){
-    val bookViewModel: BookViewModel = viewModel();
+    val bookViewModel: BookViewModel = viewModel()
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Routes.signInRoute){
+
+    NavHost(navController = navController, startDestination = Routes.bookListRoute){
         composable(Routes.signupRoute){
             SignUpScreen(bookViewModel = bookViewModel, toHomeScreen = {navController.navigate(Routes.homeRoute)}, toSignIn = {navController.navigate(Routes.signInRoute)})
         }
@@ -39,9 +40,7 @@ fun Navigation(){
                 toFavorites = {navController.navigate(Routes.favoritesRoute)},
                 toHistory = {navController.navigate(Routes.historyRoute)},
                 toNotifications = {navController.navigate(Routes.notificationRoute)},
-                toWishlist = {navController.navigate(Routes.wishlistRoute)},
-                toAddBook = {navController.navigate(Routes.addBookRoute)},
-                toHomeScreen = {navController.navigate(Routes.homeRoute)}
+                toWishlist = {navController.navigate(Routes.wishlistRoute)}
             )
         }
         composable(Routes.bookListRoute){
@@ -58,17 +57,12 @@ fun Navigation(){
             ReceivedRequestsList(bookViewModel = bookViewModel)
         }
         composable(Routes.accountRoute){
-            ProfilePage(
-                user = User("mail", "pass", null, "phone", "name", null),
-                toHomeScreen = {navController.navigate(Routes.homeRoute)},
-                toAccount = {navController.navigate(Routes.accountRoute)},
-                toNotifications = {navController.navigate(Routes.notificationRoute)},
-                toBookList = {navController.navigate(Routes.bookListRoute)}
-            )
+            ProfilePage(User("mail", "pass", null, "phone", "name", null))
         }
         composable(Routes.addBookRoute){
-            AddBook(modifier = Modifier, viewModel = bookViewModel, toHomeScreen = {navController.navigate(Routes.homeRoute)})
+
         }
+
         composable(Routes.favoritesRoute){
 
         }
