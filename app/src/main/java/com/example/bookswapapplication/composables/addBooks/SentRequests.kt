@@ -1,4 +1,4 @@
-package com.example.bookswapapplication.composables
+package com.example.bookswapapplication.composables.addBooks
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,9 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.bookswapapplication.ui.theme.BookSwapApplicationTheme
 import com.example.bookswapapplication.viewModel.BookViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookswapapplication.utils.CategoryEnum

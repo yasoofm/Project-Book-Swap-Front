@@ -17,7 +17,7 @@ class BookViewModel : ViewModel() {
     )
     val uiState: StateFlow<BookUiState> = _uiState
 
-    fun updateCurrentBook(selectedBook: Book) {
+    fun updateCurrentBook(selectedBook: BookDummy) {
         _uiState.update {
             it.copy(currentBook = selectedBook)
         }
@@ -33,7 +33,7 @@ class BookViewModel : ViewModel() {
     }
 }
 data class BookUiState(
-    val BookList: List<Book> = emptyList(),
-    val currentBook: Book = LocalBookDataProvider.defaultBook,
+    val BookList: List<BookDummy> = emptyList(),
+    val currentBook: BookDummy = LocalBookDataProvider.defaultBook,
     val isShowingListPage: Boolean = true
 )

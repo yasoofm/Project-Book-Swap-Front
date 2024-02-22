@@ -1,5 +1,6 @@
 package com.example.bookswapapplication.navigation
 
+import BookListScreen
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
@@ -20,9 +21,10 @@ import com.example.bookswapapplication.viewModel.BookViewModel
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Navigation(){
-    val bookViewModel: BookViewModel = viewModel();
+    val bookViewModel: BookViewModel = viewModel()
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Routes.signInRoute){
+
+    NavHost(navController = navController, startDestination = Routes.bookListRoute){
         composable(Routes.signupRoute){
             SignUpScreen(bookViewModel = bookViewModel, toHomeScreen = {navController.navigate(Routes.homeRoute)}, toSignIn = {navController.navigate(Routes.signInRoute)})
         }
@@ -40,7 +42,10 @@ fun Navigation(){
             )
         }
         composable(Routes.bookListRoute){
-
+            BookListScreen(bookViewModel, {
+                //bookViewModel.currentBook = it
+                navController.navigate(Routes.bookDetailsRoute)
+            })
         }
         composable(Routes.notificationRoute){
             NotificationPage()

@@ -1,9 +1,8 @@
 package com.example.bookswapapplication.composables.list
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 
-data class Book(
+data class BookDummy(
 
     val id: Int,
     val title: String,

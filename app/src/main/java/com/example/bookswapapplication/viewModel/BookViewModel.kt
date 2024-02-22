@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bookswapapplication.R
+import com.example.bookswapapplication.composables.list.BookDummy
 import com.example.bookswapapplication.data.Book
 import com.example.bookswapapplication.data.User
 import com.example.bookswapapplication.data.response.TokenResponse
@@ -18,6 +20,23 @@ class BookViewModel : ViewModel() {
 
     var token: TokenResponse? by mutableStateOf(null)
     var user: User? by mutableStateOf(null)
+
+    var books: List<Book>? by mutableStateOf(null)
+
+//    fun getBookData(): List<Book> {
+//        return listOf(
+//            BookDummy(
+//                id = 1,
+//                title = "Harry Potter1",
+//                author = "J.K.Rowling"
+//            ),
+//            Book(
+//                id = 2,
+//                title = "Harry potter2",
+//                author = "J.K.Rowling"
+//            )
+//        )
+//    }
 
     fun signup(email: String, password: String, name: String, phoneNumber: String) {
         viewModelScope.launch {
@@ -56,6 +75,18 @@ class BookViewModel : ViewModel() {
             } catch (e: Exception) {
                 println("Error $e")
             }
+        }
+    }
+
+    fun getBooks(){
+        viewModelScope.launch {
+            try {
+                val response = apiService.getBook(token = token?.token)
+                books = response.body()
+            }catch (e: Exception){
+                println("Error $e")
+            }
+
         }
     }
 
