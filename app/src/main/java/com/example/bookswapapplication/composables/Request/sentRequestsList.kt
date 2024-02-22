@@ -22,11 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.bookswapapplication.data.Request
 import com.example.bookswapapplication.utils.Status
+import com.example.bookswapapplication.viewModel.BookViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SentRequestsList(requests: List<Request>) {
+fun SentRequestsList(requests: List<Request>, bookViewModel: BookViewModel) {
 
     Scaffold(
         topBar = {

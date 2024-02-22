@@ -21,14 +21,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.toUpperCase
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.bookswapapplication.ui.theme.BookSwapApplicationTheme
 import com.example.bookswapapplication.viewModel.BookViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bookswapapplication.utils.CategoryEnum
-import java.util.Locale
 
 @Composable
 fun AddBook(modifier: Modifier = Modifier, viewModel: BookViewModel = viewModel(), toHomeScreen: ()-> Unit){

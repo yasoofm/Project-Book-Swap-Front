@@ -11,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.bookswapapplication.composables.AddBook
 import com.example.bookswapapplication.composables.HomeScreen
 import com.example.bookswapapplication.composables.NotificationPage
-import com.example.bookswapapplication.composables.Request.RequestPage
 import com.example.bookswapapplication.composables.profilePage.ProfilePage
 import com.example.bookswapapplication.composables.signin.SignInScreen
 import com.example.bookswapapplication.composables.signup.SignUpScreen
@@ -62,7 +61,6 @@ fun Navigation(){
             AddBook(modifier = Modifier, viewModel = bookViewModel, toHomeScreen = {navController.navigate(Routes.homeRoute)})
         }
         composable(Routes.addRequestRoute){
-            RequestPage()
         }
         composable(Routes.favoritesRoute){
 
