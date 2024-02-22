@@ -46,7 +46,10 @@ fun SignUpScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
-        Text(text = "Bank App", style = MaterialTheme.typography.headlineMedium, color =  Color(0xFF9AD14D))
+        Text(text = "Book App", style = MaterialTheme.typography.headlineMedium, color =  Color(
+            0xFF4D82D1
+        )
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
         // double check

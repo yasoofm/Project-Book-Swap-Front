@@ -28,11 +28,10 @@ import com.example.bookswapapplication.viewModel.BookViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SentRequestsList(bookViewModel: BookViewModel) {
-
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Sent Requests") },
+                title = { Text("Swap Requests") },
             )
         }
     ) {
@@ -49,7 +48,7 @@ fun SentRequestsList(bookViewModel: BookViewModel) {
 }
 
 @Composable
-fun SentRequestCard(request: Request) {
+fun RequestCard(request: Request) {
     Card(
         modifier = Modifier
             .fillMaxWidth()

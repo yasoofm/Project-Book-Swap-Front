@@ -23,16 +23,13 @@ interface BookApiService {
     suspend fun signup(@Body user: User): Response<String>
 
     @POST(Constants.addBookEndpoint)
-    suspend fun addBook(
-        @Header("Authorization") token: String?,
-        @Body book: Book
-    ): Response<String>
+    suspend fun addBook(@Body book: Book): Response<String>
 
     @GET(Constants.getBookEndpoint)
-    suspend fun getBooks(@Body user: User): Response<Book>
+    suspend fun getBook(@Header("Authorization") token: String?): Response<List<Book>>
 
     @GET(Constants.getSentRequests)
-    suspend fun getSentRequests(@Header("Authorization") token: String?): Response<List<Request>>
+    suspend fun getSentRequests(@Body user: User): Response<Request>
 
     @GET(Constants.getReceivedRequests)
     suspend fun getReceivedRequests(@Header("Authorization") token: String?): Response<List<Request>>
