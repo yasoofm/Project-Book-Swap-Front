@@ -27,8 +27,7 @@ import com.example.bookswapapplication.viewModel.BookViewModel
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SentRequestsList(requests: List<Request>,viewModel: BookViewModel) {
-
+fun SentRequestsList(requests: List<Request>, bookViewModel: BookViewModel) {
 
     Scaffold(
         topBar = {
