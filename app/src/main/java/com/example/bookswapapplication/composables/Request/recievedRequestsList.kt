@@ -90,7 +90,6 @@ fun ReceivedRequestCard(
                         println(request.id)
                         if (request.id != null) {
                             bookViewModel.updateRequestStatus(request.id, Status.ACCEPTED.name)
-                            bookViewModel.receivedRequests()
                         }
                     },
                     modifier = Modifier
@@ -104,7 +103,6 @@ fun ReceivedRequestCard(
                     onClick = {
                         if (request.id != null) {
                             bookViewModel.updateRequestStatus(request.id, Status.DENIED.name)
-                            bookViewModel.receivedRequests()
                         }
                     },
                     modifier = Modifier

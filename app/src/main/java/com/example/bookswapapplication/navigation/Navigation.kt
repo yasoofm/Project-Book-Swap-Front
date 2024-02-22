@@ -8,8 +8,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.bookswapapplication.composables.AddBook
+import com.example.bookswapapplication.composables.BooksListPage
 import com.example.bookswapapplication.composables.HomeScreen
-import com.example.bookswapapplication.composables.NotificationPage
 import com.example.bookswapapplication.composables.Request.ReceivedRequestsList
 import com.example.bookswapapplication.composables.Request.SentRequestsList
 import com.example.bookswapapplication.composables.profilePage.ProfilePage
@@ -43,10 +44,13 @@ fun Navigation(){
             )
         }
         composable(Routes.bookListRoute){
-            BookListScreen(bookViewModel, {
-                //bookViewModel.currentBook = it
-                navController.navigate(Routes.bookDetailsRoute)
-            })
+            BooksListPage(
+                bookViewModel = bookViewModel,
+                toBookList = { navController.navigate(Routes.bookListRoute) },
+                toNotifications = { navController.navigate(Routes.historyRoute) },
+                toAccount = { navController.navigate(Routes.homeRoute) }) {
+
+            }
         }
         composable(Routes.notificationRoute){
             bookViewModel.receivedRequests()
@@ -58,9 +62,7 @@ fun Navigation(){
         composable(Routes.addBookRoute){
 
         }
-        composable(Routes.addRequestRoute){
-            RequestPage()
-        }
+
         composable(Routes.favoritesRoute){
 
         }

@@ -9,6 +9,7 @@ import com.example.bookswapapplication.R
 import com.example.bookswapapplication.composables.list.BookDummy
 import com.example.bookswapapplication.data.Book
 import com.example.bookswapapplication.data.User
+import com.example.bookswapapplication.data.request.SwapRequest
 import com.example.bookswapapplication.data.request.UpdateStatusRequest
 import com.example.bookswapapplication.data.response.TokenResponse
 import com.example.bookswapapplication.network.BookApiService
@@ -21,6 +22,9 @@ class BookViewModel : ViewModel() {
 
     var token: TokenResponse? by mutableStateOf(null)
     var user: User? by mutableStateOf(null)
+    var historyList: List<Request>? by mutableStateOf(null)
+    var receivedList: List<Request>? by mutableStateOf(null)
+    var bookList: List<Book>? by mutableStateOf(null)
 
     init {
 
@@ -46,7 +50,8 @@ class BookViewModel : ViewModel() {
             } catch (e: Exception) {
                 println("Error $e")
             } finally {
-                if (token != null){
+                getBooks()
+                if (token != null) {
                     toHomeScreen()
                 }
             }
@@ -58,7 +63,7 @@ class BookViewModel : ViewModel() {
         description: String,
         author: String,
         condition: String,
-        category: CategoryEnum
+        category: CategoryEnum,
     ) {
         viewModelScope.launch {
             try {
@@ -67,6 +72,8 @@ class BookViewModel : ViewModel() {
                     category = category, image = null ))
             } catch (e: Exception) {
                 println("Error $e")
+            } finally {
+                getBooks()
             }
         }
     }
@@ -97,10 +104,32 @@ class BookViewModel : ViewModel() {
                 val response = apiService.updateRequestStatus(token = token?.token, requestId = requestId, updateStatusRequest = UpdateStatusRequest(status))
             } catch (e: Exception){
                 println("Error $e")
+            } finally {
+                receivedRequests()
+                sentRequests()
+            }
+        }
+    }
+    fun getBooks(){
+        viewModelScope.launch{
+            try {
+                val response = apiService.getBooks(token = token?.token)
+                bookList = response.body()
+            } catch (e: Exception){
+                println("Error $e")
             }
         }
     }
 
+    fun requestSwap(swapRequest: SwapRequest){
+        viewModelScope.launch {
+            try {
+                val response = apiService.swapBooks(token = token?.token, swapRequest = swapRequest)
+            } catch (e: Exception){
+                println("Error $e")
+            }
+        }
+    }
 }
 
 
