@@ -29,10 +29,10 @@ interface BookApiService {
     suspend fun getBooks(@Body user: User): Response<Book>
 
     @GET(Constants.getSentRequests)
-    suspend fun getSentRequests(@Body user: User): Response<Request>
+    suspend fun getSentRequests(@Header("Authorization") token: String?): Response<List<Request>>
 
     @GET(Constants.getReceivedRequests)
-    suspend fun getReceived(@Body user: User): Response<Request>
+    suspend fun getReceivedRequests(@Body user: User): Response<Request>
 
     @POST(Constants.swapBooks)
     suspend fun swapBooks(@Body user: User): Response<String>
