@@ -27,7 +27,7 @@ import com.example.bookswapapplication.viewModel.BookViewModel
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SentRequestsList(requests: List<Request>, bookViewModel: BookViewModel) {
+fun SentRequestsList(bookViewModel: BookViewModel) {
 
     Scaffold(
         topBar = {
@@ -37,10 +37,10 @@ fun SentRequestsList(requests: List<Request>, bookViewModel: BookViewModel) {
         }
     ) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(it),
             contentPadding = PaddingValues(16.dp)
         ) {
-            items(requests) { request ->
+            items(bookViewModel.historyList?: listOf()) { request ->
                 SentRequestCard(request = request)
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -59,11 +59,11 @@ fun SentRequestCard(request: Request) {
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = "Receiver: ${request.receiver}",
+                text = "Receiver: ${request.receiver.name}",
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Book: ${request.book}",
+                text = "Book: ${request.book.title}",
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(

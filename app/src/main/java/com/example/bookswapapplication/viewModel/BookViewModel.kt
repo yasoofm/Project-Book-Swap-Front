@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookswapapplication.data.Book
 import com.example.bookswapapplication.data.Request
 import com.example.bookswapapplication.data.User
+import com.example.bookswapapplication.data.request.UpdateStatusRequest
 import com.example.bookswapapplication.data.response.TokenResponse
 import com.example.bookswapapplication.network.BookApiService
 import com.example.bookswapapplication.network.RetrofitHelper
@@ -22,6 +23,9 @@ class BookViewModel : ViewModel() {
     var historyList: List<Request>? by mutableStateOf(null)
     var receivedList: List<Request>? by mutableStateOf(null)
 
+    init {
+
+    }
 
     fun signup(email: String, password: String, name: String, phoneNumber: String) {
         viewModelScope.launch {
@@ -49,8 +53,6 @@ class BookViewModel : ViewModel() {
             }
         }
     }
-
-
     fun addbook(
         ISBN: Long,
         title: String,
@@ -88,18 +90,25 @@ class BookViewModel : ViewModel() {
                 println("Error $e")
             }
         }
-
-        fun receivedRequests() {
-            viewModelScope.launch {
-                try {
-                    val response = apiService.getSentRequests(token = token?.token)
-                    receivedList = response.body()
-                } catch (e: Exception) {
-                    println("Error $e")
-                }
+    }
+    fun receivedRequests() {
+        viewModelScope.launch {
+            try {
+                val response = apiService.getReceivedRequests(token = token?.token)
+                receivedList = response.body()
+            } catch (e: Exception) {
+                println("Error $e")
             }
         }
-
+    }
+    fun updateRequestStatus(requestId: Long, status: String){
+        viewModelScope.launch {
+            try {
+                val response = apiService.updateRequestStatus(token = token?.token, requestId = requestId, updateStatusRequest = UpdateStatusRequest(status))
+            } catch (e: Exception){
+                println("Error $e")
+            }
+        }
     }
 
 }
